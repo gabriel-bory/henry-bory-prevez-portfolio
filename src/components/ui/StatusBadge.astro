@@ -1,0 +1,10 @@
+---
+interface Props {
+  status?: string;
+}
+
+const { status = 'Pendiente' } = Astro.props;
+const statusClass = status.toLowerCase().includes('disponible') ? 'is-ready' : 'is-pending';
+---
+
+<span class={`status-badge ${statusClass}`}>{status}</span>

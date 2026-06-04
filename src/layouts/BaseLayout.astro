@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import { mainNavigation } from '../data/navigation';
+import { withBase } from '../utils/url';
 
 interface Props {
   title?: string;
@@ -12,14 +14,7 @@ const {
   description = site.description,
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
-
-const url = (path: string = '') => {
-  const normalizedPath = path.replace(/^\/+/, '');
-  return `${base}${normalizedPath}`;
-};
-
-const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
+const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
 ---
 
 <!doctype html>
@@ -29,19 +24,21 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0f3d5e" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <title>{title}</title>
   </head>
 
   <body>
     <header class="site-header">
       <nav class="container nav" aria-label="Navegación principal">
-        <a class="brand" href={url()} aria-label="Inicio">
+        <a class="brand" href={withBase('')} aria-label="Inicio">
           <img
             src={profileImage}
             alt="Foto profesional del Dr. Henry Bory Prevez"
             class="brand-avatar"
-            width="40"
-            height="40"
+            width="42"
+            height="42"
           />
           <span>Henry Bory Prevez</span>
         </a>
@@ -62,13 +59,9 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
         </div>
 
         <div class="nav-links" id="main-menu">
-          <a href={url('sobre-mi/')}>Sobre mí</a>
-          <a href={url('investigacion/')}>Investigación</a>
-          <a href={url('publicaciones/')}>Publicaciones</a>
-          <a href={url('proyectos/')}>Proyectos</a>
-          <a href={url('software/')}>Software</a>
-          <a href={url('cv/')}>CV</a>
-          <a href={url('contacto/')}>Contacto</a>
+          {mainNavigation.slice(1).map((item) => (
+            <a href={withBase(item.href)}>{item.label}</a>
+          ))}
         </div>
       </nav>
     </header>
@@ -86,8 +79,8 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
 
         <div>
           <p>
-            Portafolio profesional en construcción. El QR definitivo se generará cuando la página
-            de CV esté publicada y revisada.
+            Portafolio profesional en construcción. El QR apunta a la página de CV
+            y debe validarse después del despliegue público.
           </p>
         </div>
       </div>
@@ -115,6 +108,13 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
         const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', String(!expanded));
         menu?.classList.toggle('is-open');
+      });
+
+      menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          menuToggle?.setAttribute('aria-expanded', 'false');
+        });
       });
     </script>
   </body>

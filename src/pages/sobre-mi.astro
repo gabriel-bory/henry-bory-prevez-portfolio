@@ -1,18 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/url';
 ---
 
 <BaseLayout title="Sobre mí | Henry Bory Prevez">
   <section class="section">
-    <div class="container">
+    <div class="container readable">
+      <p class="eyebrow">Perfil académico</p>
       <h1>Sobre el Dr. Henry Bory Prevez</h1>
+
       <p class="lead">
-        Profesor Titular de la Universidad de Oriente con trayectoria en Automática, control avanzado,
-        electrónica de potencia y modelado de sistemas dinámicos.
+        Doctor en Ciencias y Profesor Titular de la Universidad de Oriente, Santiago de Cuba,
+        con trayectoria en Automática, control avanzado, electrónica de potencia, modelado
+        matemático y simulación de sistemas dinámicos.
       </p>
+
       <p>
-        Esta página será completada con información validada desde el repositorio documental.
+        Su trabajo científico integra investigación aplicada en sistemas de energía renovable,
+        micro-hidroeléctricas aisladas, regulación de frecuencia, convertidores y rectificadores
+        conmutados, sistemas OTEC, energía undimotriz y modelado computacional interdisciplinario.
       </p>
+
+      <p>
+        Su enfoque profesional conecta teoría, simulación y aplicación tecnológica, con especial
+        interés en problemas donde convergen ingeniería eléctrica, control automático, matemática
+        aplicada, energía y sistemas complejos.
+      </p>
+
+      <div class="button-row">
+        <a class="button" href={withBase('cv/')}>Ver CV descargable</a>
+        <a class="button secondary" href={withBase('investigacion/')}>Explorar investigación</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

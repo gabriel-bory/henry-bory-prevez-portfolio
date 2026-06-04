@@ -1,14 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { researchAreas } from '../data/research-areas';
+import { withBase } from '../utils/url';
 
-const base = import.meta.env.BASE_URL;
-
-const url = (path: string = '') => {
-  const normalizedPath = path.replace(/^\/+/, '');
-  return `${base}${normalizedPath}`;
-};
-
-const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
+const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
 ---
 
 <BaseLayout>
@@ -26,8 +21,8 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
         </p>
 
         <div class="button-row">
-          <a class="button" href={url('cv/')}>Descargar CV</a>
-          <a class="button secondary" href={url('publicaciones/')}>Ver publicaciones</a>
+          <a class="button" href={withBase('cv/')}>Descargar CV</a>
+          <a class="button secondary" href={withBase('publicaciones/')}>Ver publicaciones</a>
         </div>
       </div>
 
@@ -42,15 +37,53 @@ const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
         />
 
         <div class="card">
-          <h2>Áreas clave</h2>
-          <ul>
-            <li>Automática y control avanzado.</li>
-            <li>Micro-hidroeléctricas y turbina Pelton.</li>
-            <li>OTEC y energía oceánica.</li>
-            <li>Biofísica computacional.</li>
-          </ul>
+          <h2>Perfil académico</h2>
+          <p>
+            Investigación, docencia universitaria y desarrollo científico aplicado a energía,
+            control, simulación y sistemas complejos.
+          </p>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Áreas de trabajo</p>
+        <h2>Líneas de investigación y aplicación</h2>
+      </div>
+
+      <div class="card-grid">
+        {researchAreas.map((area) => (
+          <article class="card">
+            <h3>{area.title}</h3>
+            <p>{area.summary}</p>
+            <a class="text-link" href={withBase(area.href)}>Explorar línea</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Trazabilidad</p>
+        <h2>Comunicación profesional basada en evidencia</h2>
+        <p>
+          El sitio separa publicaciones verificadas, líneas actuales en validación,
+          software/registro y contenidos pendientes de respaldo documental.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Próximo hito</h3>
+        <p>
+          Consolidar la página de CV descargables, validar la URL pública y usarla como destino
+          del QR profesional en CV, dossier y presentación.
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>

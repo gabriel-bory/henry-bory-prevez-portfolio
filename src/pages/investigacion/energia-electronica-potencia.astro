@@ -1,4 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/url';
 ---
-<BaseLayout title="Energía y electrónica de potencia | Henry Bory Prevez"><section class="section"><div class="container"><h1>Energía y electrónica de potencia</h1><p>Contenido en preparación.</p></div></section></BaseLayout>
+
+<BaseLayout title="Energía y electrónica de potencia | Henry Bory Prevez">
+  <section class="section">
+    <div class="container readable">
+      <p class="eyebrow">Línea de investigación</p>
+      <h1>Energía y electrónica de potencia</h1>
+      <p class="lead">Rectificadores, convertidores, conmutación de ángulo simétrico y regulación de frecuencia para sistemas renovables aislados.</p>
+
+      <div class="card">
+        <h2>Temas principales</h2>
+        <ul>
+          <li>Rectificadores monofásicos y trifásicos.</li><li>Convertidores AC/AC.</li><li>Mejora del factor de potencia.</li><li>Regulación de frecuencia.</li><li>Simulación en MATLAB/Simulink.</li>
+        </ul>
+      </div>
+
+      <div class="button-row">
+        <a class="button" href={withBase('publicaciones/')}>Ver publicaciones</a>
+        <a class="button secondary" href={withBase('proyectos/')}>Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

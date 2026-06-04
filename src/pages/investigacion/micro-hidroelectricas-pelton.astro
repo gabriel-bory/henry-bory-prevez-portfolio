@@ -1,4 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/url';
 ---
-<BaseLayout title="Micro-hidroeléctricas y turbina Pelton | Henry Bory Prevez"><section class="section"><div class="container"><h1>Micro-hidroeléctricas y turbina Pelton</h1><p>Contenido en preparación. Usar turbina Pelton, no Banki.</p></div></section></BaseLayout>
+
+<BaseLayout title="Micro-hidroeléctricas y turbina Pelton | Henry Bory Prevez">
+  <section class="section">
+    <div class="container readable">
+      <p class="eyebrow">Línea de investigación</p>
+      <h1>Micro-hidroeléctricas y turbina Pelton</h1>
+      <p class="lead">Línea vinculada a micro-hidroeléctricas aisladas, microrredes, regulación de frecuencia y soluciones hidroenergéticas asociadas a turbina Pelton.</p>
+
+      <div class="card">
+        <h2>Temas principales</h2>
+        <ul>
+          <li>Usar turbina Pelton como formulación técnica correcta.</li><li>No afirmar patente sin documento oficial.</li><li>Relacionar resultados con publicaciones verificadas.</li><li>Mantener caso Los Gallegos como caso de estudio documentable.</li>
+        </ul>
+      </div>
+
+      <div class="button-row">
+        <a class="button" href={withBase('publicaciones/')}>Ver publicaciones</a>
+        <a class="button secondary" href={withBase('proyectos/')}>Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

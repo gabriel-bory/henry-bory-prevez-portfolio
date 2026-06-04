@@ -1,15 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { researchAreas } from '../../data/research-areas';
+import { withBase } from '../../utils/url';
 ---
 
 <BaseLayout title="Investigación | Henry Bory Prevez">
   <section class="section">
     <div class="container">
+      <p class="eyebrow">Investigación</p>
       <h1>Líneas de investigación</h1>
+      <p class="lead">
+        La actividad investigativa se organiza alrededor de la Automática, el control avanzado,
+        la electrónica de potencia, el modelado matemático y sus aplicaciones en energía,
+        simulación y sistemas complejos.
+      </p>
+
       <div class="card-grid">
-        <article class="card"><h2>Automática y control</h2><p>Control avanzado, regulación y modelado dinámico.</p></article>
-        <article class="card"><h2>Micro-hidroeléctricas</h2><p>Regulación de frecuencia y turbina Pelton.</p></article>
-        <article class="card"><h2>OTEC y energía oceánica</h2><p>Modelado de sistemas maremotérmicos y energía undimotriz.</p></article>
+        {researchAreas.map((area) => (
+          <article class="card">
+            <h2>{area.title}</h2>
+            <p>{area.summary}</p>
+            <a class="text-link" href={withBase(area.href)}>Ver detalle</a>
+          </article>
+        ))}
       </div>
     </div>
   </section>

@@ -1,4 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/url';
 ---
-<BaseLayout title="Biofísica computacional | Henry Bory Prevez"><section class="section"><div class="container"><h1>Biofísica computacional y oncología matemática</h1><p>Contenido en preparación. No afirmar impacto clínico directo sin evidencia.</p></div></section></BaseLayout>
+
+<BaseLayout title="Biofísica computacional y oncología matemática | Henry Bory Prevez">
+  <section class="section">
+    <div class="container readable">
+      <p class="eyebrow">Línea de investigación</p>
+      <h1>Biofísica computacional y oncología matemática</h1>
+      <p class="lead">Investigación interdisciplinaria en modelado matemático de crecimiento tumoral sólido, densidad de carga superficial y fenómenos bioeléctricos.</p>
+
+      <div class="card">
+        <h2>Temas principales</h2>
+        <ul>
+          <li>Ecuaciones de Gompertz y Poisson.</li><li>Densidad de carga superficial.</li><li>Modelado computacional.</li><li>No afirmar impacto clínico directo sin evidencia experimental o médica.</li>
+        </ul>
+      </div>
+
+      <div class="button-row">
+        <a class="button" href={withBase('publicaciones/')}>Ver publicaciones</a>
+        <a class="button secondary" href={withBase('proyectos/')}>Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,12 +1,12 @@
 :root {
-  --color-bg: #f6f8fb;
+  --color-bg: #f4f7fb;
   --color-surface: #ffffff;
-  --color-text: #132033;
-  --color-muted: #526173;
+  --color-text: #06162f;
+  --color-muted: #40516a;
   --color-primary: #0f3d5e;
   --color-primary-contrast: #ffffff;
   --color-accent: #0f766e;
-  --color-border: #d9e2ec;
+  --color-border: #d7e1ec;
 
   --font-sans: Arial, Helvetica, sans-serif;
   --container: 1120px;

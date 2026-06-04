@@ -1,0 +1,41 @@
+---
+import StatusBadge from '../ui/StatusBadge.astro';
+import { withBase } from '../../utils/url';
+
+interface Item {
+  title: string;
+  description: string;
+  pdf?: string;
+  docx?: string;
+  status: string;
+}
+
+interface Props {
+  item: Item;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="card download-card">
+  <div class="download-card__head">
+    <h3>{item.title}</h3>
+    <StatusBadge status={item.status} />
+  </div>
+
+  <p>{item.description}</p>
+
+  <div class="button-row">
+    {item.pdf ? (
+      <a class="button" href={withBase(item.pdf)} download>PDF</a>
+    ) : (
+      <span class="button disabled" aria-disabled="true">PDF pendiente</span>
+    )}
+
+    {item.docx ? (
+      <a class="button secondary" href={withBase(item.docx)} download>DOCX</a>
+    ) : (
+      <span class="button secondary disabled" aria-disabled="true">DOCX pendiente</span>
+    )}
+  </div>
+</article>

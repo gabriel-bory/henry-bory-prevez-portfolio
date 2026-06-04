@@ -1,7 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCard from '../components/cv/DownloadCard.astro';
+import { cvDownloads } from '../data/cv-downloads';
+import { site } from '../data/site';
+import { withBase } from '../utils/url';
 
-const cvPageUrl = 'https://Leirgb.github.io/henry-bory-prevez-portfolio/cv/';
+const qrImage = withBase('images/qr/henry-bory-prevez-cv-qr.png');
 ---
 
 <BaseLayout title="CV descargable | Henry Bory Prevez">
@@ -13,54 +17,43 @@ const cvPageUrl = 'https://Leirgb.github.io/henry-bory-prevez-portfolio/cv/';
 
       <p class="lead">
         Seleccione el idioma y el tipo de currículum que desea consultar o descargar.
-        Las versiones públicas finales se enlazarán aquí después de la revisión documental.
+        Las versiones públicas se organizan por uso: ejecutivo, académico, ATS, resumen breve y dossier.
       </p>
 
-      <div class="card-grid cv-grid">
-        <article class="card">
-          <h2>Español</h2>
-          <p>Versiones profesionales previstas para descarga.</p>
+      <div class="language-sections">
+        {cvDownloads.map((group) => (
+          <section class="language-section" aria-labelledby={`cv-${group.language}`}>
+            <h2 id={`cv-${group.language}`}>{group.language}</h2>
+            <div class="card-grid">
+              {group.items.map((item) => (
+                <DownloadCard item={item} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
 
-          <ul class="download-list">
-            <li><strong>CV ejecutivo internacional</strong> — pendiente de enlazar.</li>
-            <li><strong>CV académico completo</strong> — pendiente de enlazar.</li>
-            <li><strong>CV ATS</strong> — pendiente de enlazar.</li>
-            <li><strong>CV de una página</strong> — pendiente de creación.</li>
-            <li><strong>Dossier profesional</strong> — pendiente de creación.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h2>English</h2>
-          <p>Professional English versions planned for international use.</p>
-
-          <ul class="download-list">
-            <li><strong>Executive CV</strong> — pending translation.</li>
-            <li><strong>Academic CV</strong> — pending translation.</li>
-            <li><strong>ATS CV</strong> — pending translation.</li>
-            <li><strong>One-page CV</strong> — pending creation.</li>
-            <li><strong>Professional dossier</strong> — pending creation.</li>
-          </ul>
-        </article>
-
-        <article class="card qr-card">
-          <h2>QR profesional</h2>
-
-          <div class="qr-placeholder" aria-label="QR profesional pendiente">
-            QR
+      <section class="qr-section">
+        <div class="card qr-card">
+          <div>
+            <p class="eyebrow">QR profesional</p>
+            <h2>Acceso directo al CV actualizado</h2>
+            <p>
+              Este código apunta a la página pública de CV. Debe validarse después del primer despliegue
+              en GitHub Pages antes de integrarlo en documentos finales.
+            </p>
+            <p class="small"><strong>URL:</strong> {site.cvUrl}</p>
           </div>
 
-          <p>
-            El QR definitivo se generará cuando esta página esté publicada,
-            revisada y lista para distribuir en CV, dossier y presentación.
-          </p>
-
-          <p class="small">
-            URL prevista:<br />
-            <strong>{cvPageUrl}</strong>
-          </p>
-        </article>
-      </div>
+          <img
+            src={qrImage}
+            alt="Código QR hacia la página de CV del portafolio profesional"
+            class="qr-image"
+            width="220"
+            height="220"
+          />
+        </div>
+      </section>
     </div>
   </section>
 </BaseLayout>

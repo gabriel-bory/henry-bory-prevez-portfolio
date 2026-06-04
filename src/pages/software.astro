@@ -1,4 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const softwareItems = await getCollection('software');
 ---
-<BaseLayout title="Software y registros | Henry Bory Prevez"><section class="section"><div class="container"><h1>Software y registros</h1><p>Niord0150-01-2022 se presentará como software/registro, no como patente.</p></div></section></BaseLayout>
+
+<BaseLayout title="Software y registros | Henry Bory Prevez">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Software y propiedad intelectual</p>
+      <h1>Software, registros y soluciones tecnológicas</h1>
+      <p class="lead">
+        Se distinguen cuidadosamente software registrado, prototipos, soluciones tecnológicas,
+        diseños, informes y posibles registros de propiedad intelectual.
+      </p>
+
+      <div class="card-grid">
+        {softwareItems.map((item) => (
+          <article class="card">
+            <p class="eyebrow">{item.data.type}</p>
+            <h2>{item.data.title}</h2>
+            {item.data.registration && <p><strong>Registro:</strong> {item.data.registration}</p>}
+            <p>{item.data.summary}</p>
+            <p class="small"><strong>Estado de evidencia:</strong> {item.data.evidenceStatus}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="callout">
+        <strong>Nota editorial:</strong> Niord0150-01-2022 se presenta como software/registro, no como patente.
+      </div>
+    </div>
+  </section>
+</BaseLayout>

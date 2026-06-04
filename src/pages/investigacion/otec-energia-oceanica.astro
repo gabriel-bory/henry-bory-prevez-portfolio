@@ -1,4 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/url';
 ---
-<BaseLayout title="OTEC y energía oceánica | Henry Bory Prevez"><section class="section"><div class="container"><h1>OTEC y energía oceánica</h1><p>Contenido en preparación.</p></div></section></BaseLayout>
+
+<BaseLayout title="Sistemas OTEC y energía oceánica | Henry Bory Prevez">
+  <section class="section">
+    <div class="container readable">
+      <p class="eyebrow">Línea de investigación</p>
+      <h1>Sistemas OTEC y energía oceánica</h1>
+      <p class="lead">Modelado y simulación de centrales maremotérmicas, ciclo de Anderson, energía undimotriz y caracterización del oleaje.</p>
+
+      <div class="card">
+        <h2>Temas principales</h2>
+        <ul>
+          <li>Sistemas OTEC.</li><li>Centrales maremotérmicas.</li><li>Energía undimotriz.</li><li>Software Niord.</li><li>Simulación de parámetros del oleaje.</li>
+        </ul>
+      </div>
+
+      <div class="button-row">
+        <a class="button" href={withBase('publicaciones/')}>Ver publicaciones</a>
+        <a class="button secondary" href={withBase('proyectos/')}>Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

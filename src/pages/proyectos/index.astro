@@ -1,4 +1,26 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
 ---
-<BaseLayout title="Proyectos | Henry Bory Prevez"><section class="section"><div class="container"><h1>Proyectos</h1><p>Proyectos y líneas aplicadas en preparación.</p></div></section></BaseLayout>
+
+<BaseLayout title="Proyectos y líneas aplicadas | Henry Bory Prevez">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Proyectos</p>
+      <h1>Proyectos y líneas aplicadas</h1>
+      <p class="lead">
+        Líneas de investigación, prototipos y aplicaciones tecnológicas organizadas con criterio
+        de evidencia y prudencia documental.
+      </p>
+
+      <div class="card-grid">
+        {projects.map((project) => (
+          <ProjectCard {...project.data} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

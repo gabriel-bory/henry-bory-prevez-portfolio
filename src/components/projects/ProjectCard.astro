@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  area: string;
+  status: string;
+  evidenceStatus: string;
+  summary: string;
+}
+
+const { title, area, status, evidenceStatus, summary } = Astro.props;
+---
+
+<article class="card">
+  <p class="eyebrow">{area}</p>
+  <h2>{title}</h2>
+  <p>{summary}</p>
+  <p class="small"><strong>Estado:</strong> {status}</p>
+  <p class="small"><strong>Evidencia:</strong> {evidenceStatus}</p>
+</article>

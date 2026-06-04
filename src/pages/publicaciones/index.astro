@@ -1,4 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PublicationCard from '../../components/publications/PublicationCard.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sorted = publications
+  .map((entry) => entry.data)
+  .sort((a, b) => b.year - a.year);
 ---
-<BaseLayout title="Publicaciones | Henry Bory Prevez"><section class="section"><div class="container"><h1>Publicaciones</h1><p>Catálogo de publicaciones verificadas en preparación.</p></div></section></BaseLayout>
+
+<BaseLayout title="Publicaciones científicas | Henry Bory Prevez">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Producción científica</p>
+      <h1>Publicaciones seleccionadas</h1>
+      <p class="lead">
+        Catálogo inicial de publicaciones y resultados científicos organizados por área temática.
+        Cada entrada conserva un estado de evidencia para mantener trazabilidad.
+      </p>
+
+      <div class="card-grid publication-grid">
+        {sorted.map((publication) => (
+          <PublicationCard {...publication} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
