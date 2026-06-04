@@ -2,34 +2,55 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL;
-const url = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
+const url = (path: string = '') => {
+  const normalizedPath = path.replace(/^\/+/, '');
+  return `${base}${normalizedPath}`;
+};
+
+const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
 ---
 
 <BaseLayout>
   <section class="hero">
     <div class="container hero-grid">
-      <div>
-        <p><strong>Dr. en Ciencias · Profesor Titular · Universidad de Oriente</strong></p>
-        <h1>Automática, energías renovables y modelado matemático aplicado.</h1>
+      <div class="hero-copy">
+        <p class="eyebrow">Dr. en Ciencias · Profesor Titular · Universidad de Oriente</p>
+
+        <h1>Henry Bory Prevez</h1>
+
         <p class="lead">
-          Portafolio profesional de Henry Bory Prevez, especializado en control avanzado, electrónica de potencia,
-          micro-hidroeléctricas, sistemas OTEC, energía undimotriz y biofísica computacional.
+          Portafolio profesional en Automática, control avanzado, electrónica de potencia,
+          energías renovables, micro-hidroeléctricas, sistemas OTEC, energía undimotriz
+          y modelado matemático aplicado.
         </p>
+
         <div class="button-row">
-          <a class="button" href={url('/cv')}>Descargar CV</a>
-          <a class="button secondary" href={url('/publicaciones')}>Ver publicaciones</a>
+          <a class="button" href={url('cv/')}>Descargar CV</a>
+          <a class="button secondary" href={url('publicaciones/')}>Ver publicaciones</a>
         </div>
       </div>
 
-      <div class="card">
-        <h2>Áreas clave</h2>
-        <ul>
-          <li>Automática y control avanzado.</li>
-          <li>Micro-hidroeléctricas y turbina Pelton.</li>
-          <li>OTEC y energía oceánica.</li>
-          <li>Biofísica computacional.</li>
-        </ul>
-      </div>
+      <aside class="profile-panel" aria-label="Perfil profesional">
+        <img
+          src={profileImage}
+          alt="Foto profesional del Dr. Henry Bory Prevez"
+          class="profile-photo"
+          loading="eager"
+          width="420"
+          height="520"
+        />
+
+        <div class="card">
+          <h2>Áreas clave</h2>
+          <ul>
+            <li>Automática y control avanzado.</li>
+            <li>Micro-hidroeléctricas y turbina Pelton.</li>
+            <li>OTEC y energía oceánica.</li>
+            <li>Biofísica computacional.</li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </section>
 </BaseLayout>

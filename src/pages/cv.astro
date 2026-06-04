@@ -1,4 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cvPageUrl = 'https://Leirgb.github.io/henry-bory-prevez-portfolio/cv/';
 ---
-<BaseLayout title="CV descargable | Henry Bory Prevez"><section class="section"><div class="container"><h1>CV descargable</h1><p>Esta página será el destino recomendado del QR profesional cuando exista una URL estable.</p></div></section></BaseLayout>
+
+<BaseLayout title="CV descargable | Henry Bory Prevez">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Currículum Vitae · Descargas profesionales</p>
+
+      <h1>CV descargable</h1>
+
+      <p class="lead">
+        Seleccione el idioma y el tipo de currículum que desea consultar o descargar.
+        Las versiones públicas finales se enlazarán aquí después de la revisión documental.
+      </p>
+
+      <div class="card-grid cv-grid">
+        <article class="card">
+          <h2>Español</h2>
+          <p>Versiones profesionales previstas para descarga.</p>
+
+          <ul class="download-list">
+            <li><strong>CV ejecutivo internacional</strong> — pendiente de enlazar.</li>
+            <li><strong>CV académico completo</strong> — pendiente de enlazar.</li>
+            <li><strong>CV ATS</strong> — pendiente de enlazar.</li>
+            <li><strong>CV de una página</strong> — pendiente de creación.</li>
+            <li><strong>Dossier profesional</strong> — pendiente de creación.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>English</h2>
+          <p>Professional English versions planned for international use.</p>
+
+          <ul class="download-list">
+            <li><strong>Executive CV</strong> — pending translation.</li>
+            <li><strong>Academic CV</strong> — pending translation.</li>
+            <li><strong>ATS CV</strong> — pending translation.</li>
+            <li><strong>One-page CV</strong> — pending creation.</li>
+            <li><strong>Professional dossier</strong> — pending creation.</li>
+          </ul>
+        </article>
+
+        <article class="card qr-card">
+          <h2>QR profesional</h2>
+
+          <div class="qr-placeholder" aria-label="QR profesional pendiente">
+            QR
+          </div>
+
+          <p>
+            El QR definitivo se generará cuando esta página esté publicada,
+            revisada y lista para distribuir en CV, dossier y presentación.
+          </p>
+
+          <p class="small">
+            URL prevista:<br />
+            <strong>{cvPageUrl}</strong>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

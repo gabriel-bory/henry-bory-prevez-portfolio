@@ -13,7 +13,13 @@ const {
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
-const url = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
+const url = (path: string = '') => {
+  const normalizedPath = path.replace(/^\/+/, '');
+  return `${base}${normalizedPath}`;
+};
+
+const profileImage = `${base}images/profile/henry-bory-prevez-profile.png`;
 ---
 
 <!doctype html>
@@ -22,20 +28,47 @@ const url = (path: string) => `${base}${path.replace(/^\//, '')}`;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f3d5e" />
     <title>{title}</title>
   </head>
+
   <body>
     <header class="site-header">
       <nav class="container nav" aria-label="Navegación principal">
-        <a href={url('/')} aria-label="Inicio"><strong>Henry Bory Prevez</strong></a>
-        <div class="nav-links">
-          <a href={url('/sobre-mi')}>Sobre mí</a>
-          <a href={url('/investigacion')}>Investigación</a>
-          <a href={url('/publicaciones')}>Publicaciones</a>
-          <a href={url('/proyectos')}>Proyectos</a>
-          <a href={url('/software')}>Software</a>
-          <a href={url('/cv')}>CV</a>
-          <a href={url('/contacto')}>Contacto</a>
+        <a class="brand" href={url()} aria-label="Inicio">
+          <img
+            src={profileImage}
+            alt="Foto profesional del Dr. Henry Bory Prevez"
+            class="brand-avatar"
+            width="40"
+            height="40"
+          />
+          <span>Henry Bory Prevez</span>
+        </a>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">
+            <span aria-hidden="true">◐</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="main-menu"
+          >
+            Menú
+          </button>
+        </div>
+
+        <div class="nav-links" id="main-menu">
+          <a href={url('sobre-mi/')}>Sobre mí</a>
+          <a href={url('investigacion/')}>Investigación</a>
+          <a href={url('publicaciones/')}>Publicaciones</a>
+          <a href={url('proyectos/')}>Proyectos</a>
+          <a href={url('software/')}>Software</a>
+          <a href={url('cv/')}>CV</a>
+          <a href={url('contacto/')}>Contacto</a>
         </div>
       </nav>
     </header>
@@ -45,10 +78,44 @@ const url = (path: string) => `${base}${path.replace(/^\//, '')}`;
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p><strong>Dr. Henry Bory Prevez</strong> — Profesor Titular, Universidad de Oriente.</p>
-        <p>Portafolio profesional en construcción. QR pendiente hasta publicar URL estable.</p>
+      <div class="container footer-grid">
+        <div>
+          <p><strong>Dr. Henry Bory Prevez</strong></p>
+          <p>Profesor Titular · Universidad de Oriente · Santiago de Cuba.</p>
+        </div>
+
+        <div>
+          <p>
+            Portafolio profesional en construcción. El QR definitivo se generará cuando la página
+            de CV esté publicada y revisada.
+          </p>
+        </div>
       </div>
     </footer>
+
+    <script>
+      const root = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        root.dataset.theme = savedTheme;
+      }
+
+      document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+        const current = root.dataset.theme;
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      });
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('#main-menu');
+
+      menuToggle?.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        menu?.classList.toggle('is-open');
+      });
+    </script>
   </body>
 </html>
