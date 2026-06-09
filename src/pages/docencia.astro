@@ -1,20 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/ui/PageIntro.astro';
+import { sectionSummaries } from '../data/section-summaries';
 ---
 
 <BaseLayout title="Docencia | Henry Bory Prevez">
-  <section class="section">
+  <PageIntro {...sectionSummaries.teaching} actions={[{ label: 'Ver perfil académico', href: 'sobre-mi/' }, { label: 'Ver publicaciones', href: 'publicaciones/', variant: 'secondary' }]} />
+  <section class="section section-tight">
     <div class="container readable">
-      <p class="eyebrow">Docencia</p>
-      <h1>Docencia y formación académica</h1>
-      <p class="lead">
-        Como Profesor Titular de la Universidad de Oriente, la trayectoria del Dr. Henry Bory Prevez
-        se vincula a la formación universitaria y a la investigación en ingeniería, automática,
-        control, electrónica de potencia y modelado.
-      </p>
-
       <div class="card">
-        <h2>Información pendiente de completar</h2>
+        <h2>Información por completar</h2>
         <ul>
           <li>Asignaturas impartidas.</li>
           <li>Tutorías de pregrado, maestría y doctorado.</li>

@@ -1,0 +1,57 @@
+---
+import { withBase } from '../../utils/url';
+
+interface Action {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  summaryTitle?: string;
+  summary?: string;
+  actions?: Action[];
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  summaryTitle = 'Síntesis profesional',
+  summary,
+  actions = [],
+} = Astro.props;
+---
+
+<section class="section page-intro">
+  <div class="container page-intro__grid">
+    <div class="page-intro__copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="lead">{lead}</p>
+
+      {actions.length > 0 && (
+        <div class="button-row">
+          {actions.map((action) => (
+            <a
+              class={`button ${action.variant === 'secondary' ? 'secondary' : ''}`}
+              href={withBase(action.href)}
+            >
+              {action.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {summary && (
+      <aside class="card page-intro__summary">
+        <h2>{summaryTitle}</h2>
+        <p>{summary}</p>
+      </aside>
+    )}
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import { withBase } from '../../utils/url';
+
+interface RelatedLink {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+interface Props {
+  title?: string;
+  links: RelatedLink[];
+}
+
+const { title = 'También puede consultar', links } = Astro.props;
+---
+
+<section class="related-links" aria-label={title}>
+  <h2>{title}</h2>
+  <div class="card-grid related-links__grid">
+    {links.map((link) => (
+      <article class="card related-card">
+        <h3>{link.label}</h3>
+        {link.description && <p>{link.description}</p>}
+        <a class="button secondary" href={withBase(link.href)}>Ir a la sección</a>
+      </article>
+    ))}
+  </div>
+</section>

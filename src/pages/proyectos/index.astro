@@ -1,26 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
 import ProjectCard from '../../components/projects/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import { sectionSummaries } from '../../data/section-summaries';
 
 const projects = await getCollection('projects');
 ---
 
 <BaseLayout title="Proyectos y líneas aplicadas | Henry Bory Prevez">
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Proyectos</p>
-      <h1>Proyectos y líneas aplicadas</h1>
-      <p class="lead">
-        Líneas de investigación, prototipos y aplicaciones tecnológicas organizadas con criterio
-        de evidencia y prudencia documental.
-      </p>
-
-      <div class="card-grid">
-        {projects.map((project) => (
-          <ProjectCard {...project.data} />
-        ))}
-      </div>
-    </div>
+  <PageIntro {...sectionSummaries.projects} actions={[{ label: 'Ver investigación', href: 'investigacion/' }, { label: 'Ver publicaciones', href: 'publicaciones/', variant: 'secondary' }]} />
+  <section class="section section-tight">
+    <div class="container"><div class="card-grid">{projects.map((project) => <ProjectCard {...project.data} />)}</div></div>
   </section>
 </BaseLayout>

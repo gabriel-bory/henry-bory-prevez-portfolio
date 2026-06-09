@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/ui/PageIntro.astro';
 import DownloadCard from '../components/cv/DownloadCard.astro';
 import { cvDownloads } from '../data/cv-downloads';
+import { sectionSummaries } from '../data/section-summaries';
 import { site } from '../data/site';
 import { withBase } from '../utils/url';
 
@@ -9,26 +11,15 @@ const qrImage = withBase('images/qr/henry-bory-prevez-cv-qr.png');
 ---
 
 <BaseLayout title="CV descargable | Henry Bory Prevez">
-  <section class="section">
+  <PageIntro {...sectionSummaries.cv} actions={[{ label: 'Ver publicaciones', href: 'publicaciones/' }, { label: 'Ver software', href: 'software/', variant: 'secondary' }]} />
+
+  <section class="section section-tight">
     <div class="container">
-      <p class="eyebrow">Currículum Vitae · Descargas profesionales</p>
-
-      <h1>CV descargable</h1>
-
-      <p class="lead">
-        Seleccione el idioma y el tipo de currículum que desea consultar o descargar.
-        Las versiones públicas se organizan por uso: ejecutivo, académico, ATS, resumen breve y dossier.
-      </p>
-
       <div class="language-sections">
         {cvDownloads.map((group) => (
           <section class="language-section" aria-labelledby={`cv-${group.language}`}>
             <h2 id={`cv-${group.language}`}>{group.language}</h2>
-            <div class="card-grid">
-              {group.items.map((item) => (
-                <DownloadCard item={item} />
-              ))}
-            </div>
+            <div class="card-grid">{group.items.map((item) => <DownloadCard item={item} />)}</div>
           </section>
         ))}
       </div>
@@ -38,20 +29,10 @@ const qrImage = withBase('images/qr/henry-bory-prevez-cv-qr.png');
           <div>
             <p class="eyebrow">QR profesional</p>
             <h2>Acceso directo al CV actualizado</h2>
-            <p>
-              Este código apunta a la página pública de CV. Debe validarse después del primer despliegue
-              en GitHub Pages antes de integrarlo en documentos finales.
-            </p>
+            <p>Este código dirige a la página pública de CV y debe validarse después del despliegue en GitHub Pages antes de integrarlo en documentos finales.</p>
             <p class="small"><strong>URL:</strong> {site.cvUrl}</p>
           </div>
-
-          <img
-            src={qrImage}
-            alt="Código QR hacia la página de CV del portafolio profesional"
-            class="qr-image"
-            width="220"
-            height="220"
-          />
+          <img src={qrImage} alt="Código QR hacia la página de CV del portafolio profesional" class="qr-image" width="220" height="220" />
         </div>
       </section>
     </div>

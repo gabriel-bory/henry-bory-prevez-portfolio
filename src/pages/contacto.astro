@@ -1,17 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/ui/PageIntro.astro';
+import { sectionSummaries } from '../data/section-summaries';
 ---
 
 <BaseLayout title="Contacto | Henry Bory Prevez">
-  <section class="section">
-    <div class="container readable">
-      <p class="eyebrow">Contacto</p>
-      <h1>Contacto y colaboración</h1>
-      <p class="lead">
-        Esta sección estará destinada a facilitar contacto académico y profesional para colaboración
-        científica, tecnológica e institucional.
-      </p>
+  <PageIntro {...sectionSummaries.contact} actions={[{ label: 'Ver CV', href: 'cv/' }, { label: 'Explorar investigación', href: 'investigacion/', variant: 'secondary' }]} />
 
+  <section class="section section-tight">
+    <div class="container readable">
       <div class="card">
         <h2>Áreas de colaboración</h2>
         <ul>
@@ -24,9 +21,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
       </div>
 
-      <div class="callout">
-        Los datos de contacto públicos se incorporarán solo después de autorización explícita.
-      </div>
+      <div class="callout">Los datos de contacto públicos se incorporarán solo después de autorización explícita.</div>
     </div>
   </section>
 </BaseLayout>

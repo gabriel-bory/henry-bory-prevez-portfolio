@@ -1,16 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
 import { researchAreas } from '../../data/research-areas';
+import { sectionSummaries } from '../../data/section-summaries';
 import { withBase } from '../../utils/url';
 ---
 
 <BaseLayout title="Investigación | Henry Bory Prevez">
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Investigación</p>
-      <h1>Líneas de investigación</h1>
-      <p class="lead">Las líneas de investigación se organizan con resúmenes claros, botones de navegación y criterio de evidencia.</p>
+  <PageIntro {...sectionSummaries.research} actions={[{ label: 'Ver publicaciones', href: 'publicaciones/' }, { label: 'Ver proyectos', href: 'proyectos/', variant: 'secondary' }]} />
 
+  <section class="section section-tight">
+    <div class="container">
       <div class="card-grid">
         {researchAreas.map((area) => (
           <article class="card research-card">

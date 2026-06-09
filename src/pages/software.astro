@@ -1,89 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/ui/PageIntro.astro';
 import { getCollection } from 'astro:content';
+import { sectionSummaries } from '../data/section-summaries';
 
 const softwareItems = await getCollection('software');
-
-const sortedSoftware = softwareItems
-  .map((item) => item.data)
-  .sort((a, b) => {
-    const yearA = a.year ?? 0;
-    const yearB = b.year ?? 0;
-    return yearB - yearA || a.title.localeCompare(b.title);
-  });
+const sortedSoftware = softwareItems.map((item) => item.data).sort((a,b)=> (b.year ?? 0) - (a.year ?? 0) || a.title.localeCompare(b.title));
 ---
 
 <BaseLayout title="Software y registros | Henry Bory Prevez">
-  <section class="section">
+  <PageIntro {...sectionSummaries.software} actions={[{ label: 'Ver proyectos', href: 'proyectos/' }, { label: 'Ver investigación', href: 'investigacion/', variant: 'secondary' }]} />
+
+  <section class="section section-tight">
     <div class="container">
-      <p class="eyebrow">Software · registros · herramientas académicas</p>
-
-      <h1>Software y soluciones tecnológicas</h1>
-
-      <p class="lead">
-        Esta sección organiza software registrado, herramientas académicas y soluciones
-        computacionales vinculadas a investigación, docencia, energía, automática,
-        simulación y modelado matemático.
-      </p>
-
       <div class="callout">
-        <strong>Criterio editorial:</strong> se distingue entre software registrado,
-        prototipo, herramienta docente y posible resultado de propiedad intelectual.
-        Ningún software se presenta como patente sin documento oficial.
+        <strong>Criterio editorial:</strong> se distingue entre software registrado, herramienta docente, recurso computacional y prototipo. Ningún resultado se presenta como patente sin documento oficial de respaldo.
       </div>
 
       <div class="card-grid software-grid">
         {sortedSoftware.map((item) => (
           <article class="card software-card">
             <p class="eyebrow">{item.type}</p>
-
             <div class="software-card__head">
               <h2>{item.title}</h2>
-              {item.year && item.year > 0 && <span class="status-badge is-ready">{item.year}</span>}
+              {(item.year ?? 0) > 0 ? <span class="status-badge is-ready">{item.year}</span> : null}
             </div>
-
-            {item.registration && (
-              <p>
-                <strong>Referencia:</strong> {item.registration}
-              </p>
-            )}
-
+            {item.registration && <p><strong>Referencia:</strong> {item.registration}</p>}
             <p>{item.summary}</p>
-
-            <p class="small">
-              <strong>Estado de evidencia:</strong> {item.evidenceStatus}
-            </p>
+            <p class="small"><strong>Estado de evidencia:</strong> {item.evidenceStatus}</p>
           </article>
         ))}
       </div>
 
       <section class="section-mini">
         <h2>Cómo se seguirá completando esta sección</h2>
-
         <div class="card-grid">
-          <article class="card">
-            <h3>Ficha técnica</h3>
-            <p>
-              Para cada software se debe completar objetivo, plataforma, lenguaje,
-              año, autores, institución, evidencia y uso recomendado.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Evidencia documental</h3>
-            <p>
-              Los registros mencionados en CV deben respaldarse con certificados,
-              documentos oficiales o fichas institucionales antes de ampliar afirmaciones.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Relación con investigación</h3>
-            <p>
-              Cada software debe conectarse con publicaciones, proyectos, docencia
-              o líneas de investigación para reforzar la trazabilidad del portafolio.
-            </p>
-          </article>
+          <article class="card"><h3>Ficha técnica</h3><p>Se completarán objetivo, plataforma, lenguaje, autores, institución, año y uso recomendado.</p></article>
+          <article class="card"><h3>Evidencia documental</h3><p>Los registros mencionados en el currículo se ampliarán solo con certificados, fichas o documentos oficiales.</p></article>
+          <article class="card"><h3>Relación con investigación</h3><p>Cada software se enlazará con líneas de trabajo, publicaciones o proyectos para reforzar la trazabilidad del portafolio.</p></article>
         </div>
       </section>
     </div>

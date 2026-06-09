@@ -1,25 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { researchAreas } from '../data/research-areas';
+import { sectionSummaries } from '../data/section-summaries';
 import { withBase } from '../utils/url';
 
 const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
+const home = sectionSummaries.home;
 ---
 
 <BaseLayout>
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Dr. en Ciencias · Profesor Titular · Universidad de Oriente</p>
-
-        <h1>Henry Bory Prevez</h1>
-
-        <p class="lead">
-          Portafolio profesional en Automática, control avanzado, electrónica de potencia,
-          energías renovables, micro-hidroeléctricas, sistemas OTEC, energía undimotriz
-          y modelado matemático aplicado.
-        </p>
-
+        <p class="eyebrow">{home.eyebrow}</p>
+        <h1>{home.title}</h1>
+        <p class="lead">{home.lead}</p>
         <div class="button-row">
           <a class="button" href={withBase('cv/')}>Descargar CV</a>
           <a class="button secondary" href={withBase('publicaciones/')}>Ver publicaciones</a>
@@ -27,21 +22,10 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
       </div>
 
       <aside class="profile-panel" aria-label="Perfil profesional">
-        <img
-          src={profileImage}
-          alt="Foto profesional del Dr. Henry Bory Prevez"
-          class="profile-photo"
-          loading="eager"
-          width="420"
-          height="520"
-        />
-
+        <img src={profileImage} alt="Foto profesional del Dr. Henry Bory Prevez" class="profile-photo" loading="eager" width="420" height="520" />
         <div class="card">
-          <h2>Perfil académico</h2>
-          <p>
-            Investigación, docencia universitaria y desarrollo científico aplicado a energía,
-            control, simulación y sistemas complejos.
-          </p>
+          <h2>Qué encontrará en este sitio</h2>
+          <p>{home.summary}</p>
         </div>
       </aside>
     </div>
@@ -69,19 +53,21 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
   <section class="section section-alt">
     <div class="container split">
       <div>
-        <p class="eyebrow">Trazabilidad</p>
+        <p class="eyebrow">Trazabilidad y criterio editorial</p>
         <h2>Comunicación profesional basada en evidencia</h2>
         <p>
           El sitio separa publicaciones verificadas, líneas actuales en validación,
-          software/registro y contenidos pendientes de respaldo documental.
+          software o registros documentados y contenidos pendientes de respaldo,
+          de manera que la información se mantenga útil, profesional y responsable.
         </p>
       </div>
 
       <div class="card">
-        <h3>Próximo hito</h3>
+        <h3>Uso del portafolio</h3>
         <p>
-          Consolidar la página de CV descargables, validar la URL pública y usarla como destino
-          del QR profesional en CV, dossier y presentación.
+          Este portafolio está diseñado para apoyar cooperación académica, presentación
+          institucional, consulta de publicaciones, acceso a currículos descargables y
+          futura expansión multilingüe.
         </p>
       </div>
     </div>

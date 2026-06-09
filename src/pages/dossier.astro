@@ -1,32 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { withBase } from '../utils/url';
+import PageIntro from '../components/ui/PageIntro.astro';
+import { sectionSummaries } from '../data/section-summaries';
 ---
 
 <BaseLayout title="Dossier profesional | Henry Bory Prevez">
-  <section class="section">
-    <div class="container readable">
-      <p class="eyebrow">Dossier</p>
-      <h1>Dossier profesional de investigación</h1>
-      <p class="lead">
-        El dossier profesional presentará una síntesis institucional de trayectoria académica,
-        líneas de investigación, publicaciones, software, proyectos y oportunidades de cooperación.
-      </p>
-
-      <div class="card">
-        <h2>Contenido previsto</h2>
-        <ul>
-          <li>Resumen ejecutivo.</li>
-          <li>Líneas de investigación.</li>
-          <li>Publicaciones seleccionadas.</li>
-          <li>Software y registros.</li>
-          <li>Proyectos y aplicaciones.</li>
-          <li>Propuesta de colaboración.</li>
-        </ul>
-      </div>
-
-      <div class="button-row">
-        <a class="button" href={withBase('cv/')}>Consultar CVs disponibles</a>
+  <PageIntro {...sectionSummaries.dossier} actions={[{ label: 'Consultar CVs', href: 'cv/' }, { label: 'Ver publicaciones', href: 'publicaciones/', variant: 'secondary' }]} />
+  <section class="section section-tight">
+    <div class="container">
+      <div class="card-grid">
+        <article class="card"><h2>Trayectoria</h2><p>Síntesis académica, formación, docencia y experiencia científica.</p></article>
+        <article class="card"><h2>Investigación</h2><p>Líneas principales y relación con publicaciones, software y proyectos.</p></article>
+        <article class="card"><h2>Colaboración</h2><p>Propuesta institucional para cooperación académica, científica y tecnológica.</p></article>
       </div>
     </div>
   </section>

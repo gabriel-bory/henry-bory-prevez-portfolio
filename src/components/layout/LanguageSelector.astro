@@ -6,20 +6,21 @@ const activeLanguage = languages.find((language) => language.status === 'active'
 ---
 
 <div class="language-select" aria-label="Selector de idioma">
-  <label class="language-select__label" for="language-select">
-    Seleccionar idioma
-  </label>
-
-  <select id="language-select" class="language-select__control" data-language-select>
+  <label class="language-select__label" for="language-select">Seleccionar idioma</label>
+  <select
+    id="language-select"
+    class="language-select__control"
+    data-language-select
+    aria-label="Seleccionar idioma"
+    title={`Idioma actual: ${activeLanguage.fullLabel}`}
+  >
     {languages.map((language) => (
       <option
         value={withBase(language.href)}
         selected={language.code === activeLanguage.code}
         disabled={language.status !== 'active'}
       >
-        {language.status === 'active'
-          ? language.label
-          : `${language.label} — en preparación`}
+        {language.status === 'active' ? language.label : `${language.label} · prep.`}
       </option>
     ))}
   </select>

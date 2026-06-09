@@ -12,6 +12,12 @@ interface Props {
 
 const { title = site.title, description = site.description } = Astro.props;
 const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  const target = withBase(href);
+  return currentPath === target || (target !== withBase('') && currentPath.startsWith(target));
+};
 ---
 
 <!doctype html>
@@ -27,26 +33,34 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
   </head>
 
   <body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
+
     <header class="site-header">
       <nav class="container nav" aria-label="Navegación principal">
         <a class="brand" href={withBase('')} aria-label="Inicio">
           <img src={profileImage} alt="Foto profesional del Dr. Henry Bory Prevez" class="brand-avatar" width="42" height="42" />
-          <span>Henry Bory Prevez</span>
+          <span class="brand-text">
+            <span class="brand-name">Henry Bory Prevez</span>
+            <span class="brand-short" aria-hidden="true">HBP</span>
+          </span>
         </a>
 
         <div class="nav-actions">
           <LanguageSelector />
           <button class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro"><span aria-hidden="true">◐</span></button>
-          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú</button>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="Abrir menú de navegación">
+            <span class="menu-label">Menú</span>
+            <span class="menu-icon" aria-hidden="true">☰</span>
+          </button>
         </div>
 
         <div class="nav-links" id="main-menu">
-          {mainNavigation.slice(1).map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          {mainNavigation.slice(1).map((item) => <a class={isActive(item.href) ? 'is-active' : ''} href={withBase(item.href)}>{item.label}</a>)}
         </div>
       </nav>
     </header>
 
-    <main><slot /></main>
+    <main id="contenido-principal"><slot /></main>
 
     <footer class="site-footer">
       <div class="container footer-grid">
@@ -55,7 +69,7 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
           <p>Profesor Titular · Universidad de Oriente · Santiago de Cuba.</p>
         </div>
         <div>
-          <p>Portafolio profesional multilingüe en construcción. La versión española es la base editorial; English y Nederlands se prepararán con revisión humana antes de publicarse.</p>
+          <p>Portafolio profesional multilingüe en construcción. Español es la versión editorial base; English y Nederlands se publicarán tras revisión humana y validación final.</p>
         </div>
       </div>
     </footer>
@@ -63,7 +77,6 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
     <script>
       const root = document.documentElement;
       const savedTheme = localStorage.getItem('theme');
-
       if (savedTheme === 'light' || savedTheme === 'dark') root.dataset.theme = savedTheme;
 
       document.querySelector('.theme-toggle')?.addEventListener('click', () => {
@@ -75,7 +88,6 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
 
       const menuToggle = document.querySelector('.menu-toggle');
       const menu = document.querySelector('#main-menu');
-
       menuToggle?.addEventListener('click', () => {
         const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', String(!expanded));

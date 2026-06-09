@@ -1,24 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
 import PublicationCard from '../../components/publications/PublicationCard.astro';
 import { getCollection } from 'astro:content';
+import { sectionSummaries } from '../../data/section-summaries';
 
 const publications = await getCollection('publications');
-const sorted = publications
-  .map((entry) => ({ slug: entry.id.replace(/\.md$/, ''), ...entry.data }))
-  .sort((a, b) => b.year - a.year);
+const sorted = publications.map((entry) => ({ slug: entry.id.replace(/\.md$/, ''), ...entry.data })).sort((a, b) => b.year - a.year);
+const areas = [...new Set(sorted.map((publication) => publication.area))].sort();
 ---
 
 <BaseLayout title="Publicaciones científicas | Henry Bory Prevez">
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Producción científica</p>
-      <h1>Publicaciones seleccionadas</h1>
-      <p class="lead">Catálogo inicial de publicaciones y resultados científicos organizados por área temática. Cada tarjeta incluye resumen, estado de evidencia y botón para ampliar detalles.</p>
+  <PageIntro {...sectionSummaries.publications} actions={[{ label: 'Ver investigación', href: 'investigacion/' }, { label: 'Ver CV', href: 'cv/', variant: 'secondary' }]} />
 
-      <div class="card-grid publication-grid">
-        {sorted.map((publication) => <PublicationCard {...publication} />)}
+  <section class="section section-tight">
+    <div class="container">
+      <div class="card">
+        <h2>Índice por áreas</h2>
+        <div class="tag-list">{areas.map((area) => <span class="tag">{area}</span>)}</div>
       </div>
+      <div class="card-grid publication-grid">{sorted.map((publication) => <PublicationCard {...publication} />)}</div>
     </div>
   </section>
 </BaseLayout>
