@@ -1,5 +1,15 @@
-export const languages = [
-  { code: 'es', label: 'ES', fullLabel: 'Español', status: 'active', href: '' },
-  { code: 'en', label: 'EN', fullLabel: 'English', status: 'planned', href: 'en/' },
-  { code: 'nl', label: 'NL', fullLabel: 'Nederlands', status: 'planned', href: 'nl/' },
-] as const;
+import { localeLabels, type Locale } from '../i18n/locales';
+
+export const languages = (Object.keys(localeLabels) as Locale[]).map((code) => ({
+  code,
+  label: localeLabels[code].short,
+  fullLabel: localeLabels[code].nativeName,
+  status: 'active',
+  href: code === 'es' ? '' : `${code}/`,
+})) as Array<{
+  code: Locale;
+  label: string;
+  fullLabel: string;
+  status: 'active';
+  href: string;
+}>;

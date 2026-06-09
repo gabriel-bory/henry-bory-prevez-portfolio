@@ -1,28 +1,33 @@
 ---
 import { languages } from '../../data/languages';
-import { withBase } from '../../utils/url';
+import { getCurrentLocale, getLocalizedPath } from '../../i18n/routes';
+import { languageSelectorLabels } from '../../i18n/ui';
 
-const activeLanguage = languages.find((language) => language.status === 'active') ?? languages[0];
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const currentLocale = getCurrentLocale(currentPath);
+const label = languageSelectorLabels[currentLocale];
 ---
 
-<div class="language-select" aria-label="Selector de idioma">
-  <label class="language-select__label" for="language-select">Seleccionar idioma</label>
+<div class="language-select" aria-label={label}>
+  <label class="language-select__label" for="language-select">{label}</label>
   <select
     id="language-select"
     class="language-select__control"
     data-language-select
-    aria-label="Seleccionar idioma"
-    title={`Idioma actual: ${activeLanguage.fullLabel}`}
+    aria-label={label}
+    title={`${label}: ${languages.find((language) => language.code === currentLocale)?.fullLabel ?? currentLocale}`}
   >
     {languages.map((language) => (
       <option
-        value={withBase(language.href)}
-        selected={language.code === activeLanguage.code}
-        disabled={language.status !== 'active'}
+        value={getLocalizedPath(currentPath, language.code)}
+        selected={language.code === currentLocale}
       >
-        {language.status === 'active' ? language.label : `${language.label} · prep.`}
+        {language.label}
       </option>
     ))}
   </select>
 </div>
-

@@ -1,0 +1,7 @@
+.i18n-status-card {
+  max-width: 860px;
+}
+
+.language-select__control option {
+  font-weight: 800;
+}
