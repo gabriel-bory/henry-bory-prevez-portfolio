@@ -6,6 +6,7 @@
 @import './responsive-v08.css';
 @import './responsive-i18n-typography-v10.css';
 @import './multilingual-nav-chips-v16.css';
+@import './publications-spacing-v17.css';
 
 * {
   box-sizing: border-box;
