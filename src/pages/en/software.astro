@@ -1,13 +1,23 @@
 ---
-import LocalizedPlaceholder from '../../components/i18n/LocalizedPlaceholder.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
 ---
 
-<LocalizedPlaceholder
-  locale="en"
-  routeKey="software"
-  title="Software"
-  eyebrow="Software and academic tools"
-  lead="Registered software, MATLAB tools, virtual laboratories and computational resources related to teaching, research, simulation, automatic control, energy systems and COVID-19 modelling."
-  summaryTitle="Technological production"
-  summary="The software section will document tools such as Niord, AnaRed, TabPer, Cal_Arr_Fre and Calc_Covid19 with careful evidence and terminology."
-/>
+<BaseLayout title="Software | Henry Bory Prevez">
+  <PageIntro
+    eyebrow="Software · records · academic tools"
+    title="Software and technological solutions"
+    lead="Registered or documented software, MATLAB tools, virtual laboratories and computational resources related to automatic control, power electronics, ocean energy, COVID-19, teaching, simulation and system analysis."
+    summaryTitle="Technological production"
+    summary="The software component includes Niord, AnaRed, TabPer, Cal_Arr_Fre and Calc_Covid19, together with educational and research tools connected to publications, virtual laboratories and academic work."
+    actions={[{ label: 'Projects', href: 'en/projects/' }, { label: 'Publications', href: 'en/publications/', variant: 'secondary' }]}
+  />
+
+  <section class="section section-tight"><div class="container"><div class="card-grid software-grid">
+    <article class="card"><p class="eyebrow">Software/record</p><h2>Niord v.1.0</h2><p>Software linked to calculation, modelling and simulation of parameters associated with wave energy and ocean-energy contexts. It must be presented as software/record, not as a patent, until the official document is available.</p></article>
+    <article class="card"><p class="eyebrow">Academic software</p><h2>AnaRed V1.0</h2><p>Academic software mentioned in the CV 2025. Its public description should be expanded only with verified technical evidence.</p></article>
+    <article class="card"><p class="eyebrow">Academic software</p><h2>TabPer V1.0</h2><p>Academic software record associated with the professional evidence matrix and CV documentation.</p></article>
+    <article class="card"><p class="eyebrow">Academic software</p><h2>Cal_Arr_Fre V1.0</h2><p>Computational tool associated with frequency-related calculation and academic work in energy/control contexts.</p></article>
+    <article class="card"><p class="eyebrow">Academic software</p><h2>Calc_Covid19 V1.0</h2><p>Software related to COVID-19 modelling and computational support for scientific analysis.</p></article>
+  </div></div></section>
+</BaseLayout>

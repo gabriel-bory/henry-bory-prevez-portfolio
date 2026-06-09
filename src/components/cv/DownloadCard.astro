@@ -2,6 +2,8 @@
 import StatusBadge from '../ui/StatusBadge.astro';
 import { withBase } from '../../utils/url';
 
+type Locale = 'es' | 'en' | 'nl';
+
 interface Item {
   title: string;
   description: string;
@@ -12,9 +14,16 @@ interface Item {
 
 interface Props {
   item: Item;
+  locale?: Locale;
 }
 
-const { item } = Astro.props;
+const { item, locale = 'es' } = Astro.props;
+
+const labels = {
+  es: { pdfPending: 'PDF pendiente', docxPending: 'DOCX pendiente' },
+  en: { pdfPending: 'PDF pending', docxPending: 'DOCX pending' },
+  nl: { pdfPending: 'PDF in voorbereiding', docxPending: 'DOCX in voorbereiding' },
+} as const;
 ---
 
 <article class="card download-card">
@@ -29,13 +38,13 @@ const { item } = Astro.props;
     {item.pdf ? (
       <a class="button" href={withBase(item.pdf)} download>PDF</a>
     ) : (
-      <span class="button disabled" aria-disabled="true">PDF pendiente</span>
+      <span class="button disabled" aria-disabled="true">{labels[locale].pdfPending}</span>
     )}
 
     {item.docx ? (
       <a class="button secondary" href={withBase(item.docx)} download>DOCX</a>
     ) : (
-      <span class="button secondary disabled" aria-disabled="true">DOCX pendiente</span>
+      <span class="button secondary disabled" aria-disabled="true">{labels[locale].docxPending}</span>
     )}
   </div>
 </article>
