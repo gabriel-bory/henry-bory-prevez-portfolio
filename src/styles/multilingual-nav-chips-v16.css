@@ -1,0 +1,180 @@
+/* v16: multilingual navigation and publications chips polish */
+
+/* Publications area chips: avoid visual collisions and give each chip its own breathing room. */
+.tag-list,
+.card .tag-list,
+.publication-area-index .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.7rem 0.62rem;
+  row-gap: 0.7rem;
+}
+
+.tag,
+.card .tag,
+.publication-area-index .tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  max-width: 100%;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  line-height: 1.22;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+/* Publication cards: keep category/title blocks readable in all languages. */
+.publication-grid,
+.card-grid.publication-grid {
+  row-gap: 1.25rem;
+}
+
+.publication-card .eyebrow,
+.publication-card h2,
+.publication-card h3,
+.publication-card p {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.publication-card .eyebrow {
+  line-height: 1.35;
+}
+
+.publication-card h2,
+.publication-card h3 {
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Header: avoid missing menu items in languages with long labels.
+   Full desktop nav only when there is enough width. */
+.nav {
+  min-width: 0;
+}
+
+.nav-links {
+  min-width: 0;
+}
+
+.nav-links a {
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Large screens: compact but complete horizontal navigation. */
+@media (min-width: 1321px) {
+  .nav {
+    grid-template-columns: minmax(220px, 330px) minmax(0, 1fr) minmax(210px, auto) !important;
+  }
+
+  .nav-links {
+    display: inline-flex !important;
+    grid-column: 2 !important;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.45rem, 0.7vw, 0.9rem);
+    overflow: visible;
+  }
+
+  .nav-links a {
+    font-size: clamp(0.78rem, 0.74vw, 0.93rem);
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .nav-actions {
+    grid-column: 3 !important;
+    justify-self: end;
+  }
+}
+
+/* Medium desktop/tablet: use the hamburger instead of hiding/wrapping menu items. */
+@media (max-width: 1320px) {
+  .nav {
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+  }
+
+  .brand {
+    grid-column: 1 !important;
+    justify-self: start;
+  }
+
+  .nav-actions {
+    grid-column: 2 !important;
+    justify-self: end;
+  }
+
+  .menu-toggle {
+    display: inline-grid !important;
+    place-items: center;
+  }
+
+  .nav-links {
+    display: none !important;
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    padding: 0.75rem 0 0.85rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0.35rem;
+  }
+
+  .nav-links.is-open {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 0.55rem;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+/* Small phones: compact menu grid and chips. */
+@media (max-width: 520px) {
+  .nav-links.is-open {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tag-list,
+  .card .tag-list {
+    gap: 0.55rem;
+  }
+
+  .tag,
+  .card .tag {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 18px;
+    min-height: 34px;
+    padding: 0.5rem 0.7rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .nav-links.is-open {
+    grid-template-columns: 1fr;
+  }
+
+  .tag,
+  .card .tag {
+    font-size: 0.78rem;
+  }
+}
