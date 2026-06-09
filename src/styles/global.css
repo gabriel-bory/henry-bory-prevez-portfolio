@@ -4,6 +4,7 @@
 @import './responsive-v06.css';
 @import './responsive-v07.css';
 @import './responsive-v08.css';
+@import './responsive-i18n-typography-v10.css';
 
 * {
   box-sizing: border-box;

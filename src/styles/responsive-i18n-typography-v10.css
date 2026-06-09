@@ -1,0 +1,146 @@
+/* v10: responsive typography for Spanish, English and Dutch.
+   Goal: avoid broken words such as Investigació / n on small screens. */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+.hero h1,
+.section h1,
+.page-intro__copy h1,
+.page-intro__summary h2,
+.card h2,
+.card h3,
+.eyebrow,
+.lead,
+.nav-links a,
+.button,
+.tag {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.hero h1,
+.section h1,
+.page-intro__copy h1 {
+  max-width: min(100%, 14ch);
+  text-wrap: balance;
+  hyphens: manual;
+}
+
+.page-intro__copy .lead,
+.hero-copy .lead {
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+.eyebrow {
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+.tag-list {
+  align-items: flex-start;
+}
+
+.tag {
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.25;
+  text-align: left;
+}
+
+/* Publications chips: keep labels readable without overlapping. */
+.card .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.card .tag-list .tag {
+  flex: 0 1 auto;
+}
+
+/* Desktop keeps strong titles but avoids unnecessary forced wrapping. */
+@media (min-width: 768px) {
+  .hero h1,
+  .section h1,
+  .page-intro__copy h1 {
+    max-width: min(100%, 13ch);
+  }
+}
+
+/* Small mobiles: title uses the whole column instead of a 10ch box. */
+@media (max-width: 520px) {
+  .hero h1,
+  .section h1,
+  .page-intro__copy h1 {
+    max-width: 100% !important;
+    font-size: clamp(2rem, 11vw, 2.9rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+  }
+
+  .page-intro__copy,
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .page-intro__copy .lead,
+  .hero-copy .lead,
+  .lead {
+    max-width: 100%;
+    font-size: clamp(1rem, 4.8vw, 1.12rem);
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    font-size: clamp(0.96rem, 4.9vw, 1.08rem);
+    line-height: 1.35;
+  }
+}
+
+/* 360px and below: protect long Spanish/Dutch words from being split letter-by-letter. */
+@media (max-width: 360px) {
+  .hero h1,
+  .section h1,
+  .page-intro__copy h1 {
+    max-width: 100% !important;
+    font-size: clamp(1.85rem, 10.2vw, 2.35rem);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+
+  .section {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .page-intro {
+    padding-bottom: 1.75rem;
+  }
+
+  .eyebrow {
+    font-size: 0.98rem;
+  }
+}
+
+/* 280px extreme width: prioritize readability over huge title scale. */
+@media (max-width: 280px) {
+  .hero h1,
+  .section h1,
+  .page-intro__copy h1 {
+    max-width: 100% !important;
+    font-size: clamp(1.65rem, 9.8vw, 2.05rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .lead {
+    font-size: 0.98rem;
+  }
+
+  .eyebrow {
+    font-size: 0.92rem;
+  }
+}
