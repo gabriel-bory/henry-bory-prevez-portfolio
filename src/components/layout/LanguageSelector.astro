@@ -26,11 +26,3 @@ const activeLanguage = languages.find((language) => language.status === 'active'
   </select>
 </div>
 
-<script>
-  document.querySelector('[data-language-select]')?.addEventListener('change', (event) => {
-    const target = event.target;
-    if (target instanceof HTMLSelectElement && target.value) {
-      window.location.href = target.value;
-    }
-  });
-</script>
