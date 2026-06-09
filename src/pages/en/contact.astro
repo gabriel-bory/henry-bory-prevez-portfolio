@@ -1,13 +1,15 @@
 ---
-import LocalizedPlaceholder from '../../components/i18n/LocalizedPlaceholder.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
 ---
 
-<LocalizedPlaceholder
-  locale="en"
-  routeKey="contact"
-  title="Contact"
-  eyebrow="Contact and collaboration"
-  lead="Academic, scientific and institutional collaboration in automatic control, renewable energy systems, scientific software, simulation and mathematical modelling."
-  summaryTitle="Collaboration areas"
-  summary="This section will guide professional contact while avoiding publication of private details without authorization."
-/>
+<BaseLayout title="Contact | Henry Bory Prevez">
+  <PageIntro
+    eyebrow="Contact and collaboration"
+    title="Contact"
+    lead="Professional contact orientation for academic, scientific, technological and institutional collaboration in automatic control, power electronics, renewable energy systems, scientific software, modelling and computational biophysics."
+    summaryTitle="Collaboration areas"
+    summary="Collaboration opportunities focus on energy projects, advanced control, academic software, virtual laboratories, mathematical modelling and international dissemination of verifiable scientific results."
+    actions={[{ label: 'Download CV', href: 'en/cv/' }, { label: 'Research lines', href: 'en/research/', variant: 'secondary' }]}
+  />
+</BaseLayout>

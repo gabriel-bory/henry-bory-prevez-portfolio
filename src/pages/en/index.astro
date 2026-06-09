@@ -1,13 +1,26 @@
 ---
-import LocalizedPlaceholder from '../../components/i18n/LocalizedPlaceholder.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
+import { withBase } from '../../utils/url';
 ---
 
-<LocalizedPlaceholder
-  locale="en"
-  routeKey="home"
-  title="Henry Bory Prevez"
-  eyebrow="Academic and technological portfolio"
-  lead="Professor and researcher in Automatic Control, power electronics, renewable energy systems, scientific software and applied mathematical modelling."
-  summaryTitle="Professional overview"
-  summary="This English area introduces the multilingual structure of the portfolio. The final English texts will be reviewed against the verified CV, publications, projects and software evidence."
-/>
+<BaseLayout title="Henry Bory Prevez | Academic portfolio">
+  <PageIntro
+    eyebrow="Full Professor · PhD in Automatic Control · Universidad de Oriente"
+    title="Henry Bory Prevez"
+    lead="Academic and technological portfolio of a Full Professor working in automatic control, power electronics, renewable energy systems, micro-hydropower, OTEC, ocean energy, scientific software and applied mathematical modelling."
+    summaryTitle="Professional overview"
+    summary="His trajectory integrates university teaching, applied research, scientific publications, registered or documented software, international projects and computational tools for engineering education and scientific collaboration."
+    actions={[{ label: 'Download CV', href: 'en/cv/' }, { label: 'View publications', href: 'en/publications/', variant: 'secondary' }]}
+  />
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="card-grid">
+        <article class="card"><h2>Research</h2><p>Automatic control, power electronics, micro-hydropower, OTEC and mathematical modelling.</p><a class="text-link" href={withBase('en/research/')}>Explore research</a></article>
+        <article class="card"><h2>Software</h2><p>Niord, AnaRed, TabPer, Cal_Arr_Fre, Calc_Covid19 and academic computational tools.</p><a class="text-link" href={withBase('en/software/')}>View software</a></article>
+        <article class="card"><h2>CV and evidence</h2><p>Downloadable executive, ATS and academic CV documents for professional and institutional use.</p><a class="text-link" href={withBase('en/cv/')}>Open CV page</a></article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,13 +1,25 @@
 ---
-import LocalizedPlaceholder from '../../components/i18n/LocalizedPlaceholder.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/ui/PageIntro.astro';
+import DownloadCard from '../../components/cv/DownloadCard.astro';
+import { cvDownloads } from '../../data/cv-downloads';
+
+const englishDownloads = cvDownloads.find((group) => group.language === 'English');
+const spanishDownloads = cvDownloads.find((group) => group.language === 'Español');
 ---
 
-<LocalizedPlaceholder
-  locale="en"
-  routeKey="cv"
-  title="CV"
-  eyebrow="Professional CV"
-  lead="Download area for executive, academic and ATS CV versions, with future reviewed English documents for international collaboration."
-  summaryTitle="Professional documentation"
-  summary="The English CV page will centralize reviewed public documents for academic, institutional and professional use."
-/>
+<BaseLayout title="CV | Henry Bory Prevez">
+  <PageIntro
+    eyebrow="Curriculum Vitae · Professional downloads"
+    title="Downloadable CV"
+    lead="Download area for executive, academic and ATS CV versions intended for international cooperation, academic review, institutional presentation and automated screening systems."
+    summaryTitle="Professional documentation"
+    summary="The English area includes an executive CV, ATS version and the English academic CV source document. Spanish documents remain available as the editorial source set."
+    actions={[{ label: 'Contact', href: 'en/contact/' }, { label: 'Spanish CV page', href: 'cv/', variant: 'secondary' }]}
+  />
+
+  <section class="section section-tight"><div class="container">
+    {englishDownloads && <section class="language-section"><h2>English</h2><div class="card-grid">{englishDownloads.items.map((item) => <DownloadCard item={item} locale="en" />)}</div></section>}
+    {spanishDownloads && <section class="language-section"><h2>Spanish source documents</h2><div class="card-grid">{spanishDownloads.items.map((item) => <DownloadCard item={item} locale="en" />)}</div></section>}
+  </div></section>
+</BaseLayout>
