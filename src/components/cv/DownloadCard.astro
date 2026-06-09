@@ -1,8 +1,7 @@
 ---
 import StatusBadge from '../ui/StatusBadge.astro';
 import { withBase } from '../../utils/url';
-
-type Locale = 'es' | 'en' | 'nl';
+import type { Locale } from '../../i18n/locales';
 
 interface Item {
   title: string;
@@ -19,11 +18,15 @@ interface Props {
 
 const { item, locale = 'es' } = Astro.props;
 
-const labels = {
+const labels: Record<Locale, { pdfPending: string; docxPending: string }> = {
   es: { pdfPending: 'PDF pendiente', docxPending: 'DOCX pendiente' },
   en: { pdfPending: 'PDF pending', docxPending: 'DOCX pending' },
   nl: { pdfPending: 'PDF in voorbereiding', docxPending: 'DOCX in voorbereiding' },
-} as const;
+  pt: { pdfPending: 'PDF em preparação', docxPending: 'DOCX em preparação' },
+  fr: { pdfPending: 'PDF en préparation', docxPending: 'DOCX en préparation' },
+  de: { pdfPending: 'PDF in Vorbereitung', docxPending: 'DOCX in Vorbereitung' },
+  it: { pdfPending: 'PDF in preparazione', docxPending: 'DOCX in preparazione' },
+};
 ---
 
 <article class="card download-card">

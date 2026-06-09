@@ -17,9 +17,10 @@ const qrImage = withBase('images/qr/henry-bory-prevez-cv-qr.png');
     <div class="container">
       <div class="language-sections">
         {cvDownloads.map((group) => (
-          <section class="language-section" aria-labelledby={`cv-${group.language}`}>
-            <h2 id={`cv-${group.language}`}>{group.language}</h2>
-            <div class="card-grid">{group.items.map((item) => <DownloadCard item={item} />)}</div>
+          <section class="language-section" aria-labelledby={`cv-${group.locale}`}>
+            <h2 id={`cv-${group.locale}`}>{group.language}</h2>
+            <p class="small">{group.availabilityNote}</p>
+            <div class="card-grid">{group.items.map((item) => <DownloadCard item={item} locale={group.locale} />)}</div>
           </section>
         ))}
       </div>

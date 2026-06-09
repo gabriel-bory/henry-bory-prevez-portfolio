@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../ui/PageIntro.astro';
+import DownloadCard from '../cv/DownloadCard.astro';
+import { cvDownloads } from '../../data/cv-downloads';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  eyebrow: string;
+  lead: string;
+  summaryTitle: string;
+  summary: string;
+  sourceLabel: string;
+  referenceLabel: string;
+}
+
+const { locale, title, eyebrow, lead, summaryTitle, summary, sourceLabel, referenceLabel } = Astro.props;
+const activeDownloads = cvDownloads.find((group) => group.locale === locale);
+const spanishDownloads = cvDownloads.find((group) => group.locale === 'es');
+const englishDownloads = cvDownloads.find((group) => group.locale === 'en');
+---
+
+<BaseLayout title={`${title} | Henry Bory Prevez`}>
+  <PageIntro
+    eyebrow={eyebrow}
+    title={title}
+    lead={lead}
+    summaryTitle={summaryTitle}
+    summary={summary}
+    actions={[
+      { label: sourceLabel, href: 'cv/' },
+      { label: referenceLabel, href: 'en/cv/', variant: 'secondary' },
+    ]}
+  />
+
+  <section class="section section-tight">
+    <div class="container language-sections">
+      {activeDownloads && (
+        <section class="language-section" aria-labelledby={`cv-${activeDownloads.locale}`}>
+          <h2 id={`cv-${activeDownloads.locale}`}>{activeDownloads.language}</h2>
+          <p class="small">{activeDownloads.availabilityNote}</p>
+          <div class="card-grid">
+            {activeDownloads.items.map((item) => <DownloadCard item={item} locale={activeDownloads.locale} />)}
+          </div>
+        </section>
+      )}
+
+      {locale !== 'en' && englishDownloads && (
+        <section class="language-section" aria-labelledby="cv-en-reference">
+          <h2 id="cv-en-reference">English reference documents</h2>
+          <p class="small">{englishDownloads.availabilityNote}</p>
+          <div class="card-grid">
+            {englishDownloads.items.map((item) => <DownloadCard item={item} locale="en" />)}
+          </div>
+        </section>
+      )}
+
+      {locale !== 'es' && spanishDownloads && (
+        <section class="language-section" aria-labelledby="cv-es-source">
+          <h2 id="cv-es-source">Spanish source documents</h2>
+          <p class="small">{spanishDownloads.availabilityNote}</p>
+          <div class="card-grid">
+            {spanishDownloads.items.map((item) => <DownloadCard item={item} locale="es" />)}
+          </div>
+        </section>
+      )}
+    </div>
+  </section>
+</BaseLayout>
