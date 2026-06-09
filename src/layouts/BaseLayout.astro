@@ -3,17 +3,14 @@ import '../styles/global.css';
 import { site } from '../data/site';
 import { mainNavigation } from '../data/navigation';
 import { withBase } from '../utils/url';
+import LanguageSelector from '../components/layout/LanguageSelector.astro';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = site.title,
-  description = site.description,
-} = Astro.props;
-
+const { title = site.title, description = site.description } = Astro.props;
 const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
 ---
 
@@ -33,42 +30,23 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
     <header class="site-header">
       <nav class="container nav" aria-label="Navegación principal">
         <a class="brand" href={withBase('')} aria-label="Inicio">
-          <img
-            src={profileImage}
-            alt="Foto profesional del Dr. Henry Bory Prevez"
-            class="brand-avatar"
-            width="42"
-            height="42"
-          />
+          <img src={profileImage} alt="Foto profesional del Dr. Henry Bory Prevez" class="brand-avatar" width="42" height="42" />
           <span>Henry Bory Prevez</span>
         </a>
 
         <div class="nav-actions">
-          <button class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">
-            <span aria-hidden="true">◐</span>
-          </button>
-
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="main-menu"
-          >
-            Menú
-          </button>
+          <LanguageSelector />
+          <button class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro"><span aria-hidden="true">◐</span></button>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú</button>
         </div>
 
         <div class="nav-links" id="main-menu">
-          {mainNavigation.slice(1).map((item) => (
-            <a href={withBase(item.href)}>{item.label}</a>
-          ))}
+          {mainNavigation.slice(1).map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
         </div>
       </nav>
     </header>
 
-    <main>
-      <slot />
-    </main>
+    <main><slot /></main>
 
     <footer class="site-footer">
       <div class="container footer-grid">
@@ -76,12 +54,8 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
           <p><strong>Dr. Henry Bory Prevez</strong></p>
           <p>Profesor Titular · Universidad de Oriente · Santiago de Cuba.</p>
         </div>
-
         <div>
-          <p>
-            Portafolio profesional en construcción. El QR apunta a la página de CV
-            y debe validarse después del despliegue público.
-          </p>
+          <p>Portafolio profesional multilingüe en construcción. La versión española es la base editorial; English y Nederlands se prepararán con revisión humana antes de publicarse.</p>
         </div>
       </div>
     </footer>
@@ -90,9 +64,7 @@ const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
       const root = document.documentElement;
       const savedTheme = localStorage.getItem('theme');
 
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        root.dataset.theme = savedTheme;
-      }
+      if (savedTheme === 'light' || savedTheme === 'dark') root.dataset.theme = savedTheme;
 
       document.querySelector('.theme-toggle')?.addEventListener('click', () => {
         const current = root.dataset.theme;

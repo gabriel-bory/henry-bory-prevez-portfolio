@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 
 const publications = await getCollection('publications');
 const sorted = publications
-  .map((entry) => entry.data)
+  .map((entry) => ({ slug: entry.id.replace(/\.md$/, ''), ...entry.data }))
   .sort((a, b) => b.year - a.year);
 ---
 
@@ -14,15 +14,10 @@ const sorted = publications
     <div class="container">
       <p class="eyebrow">Producción científica</p>
       <h1>Publicaciones seleccionadas</h1>
-      <p class="lead">
-        Catálogo inicial de publicaciones y resultados científicos organizados por área temática.
-        Cada entrada conserva un estado de evidencia para mantener trazabilidad.
-      </p>
+      <p class="lead">Catálogo inicial de publicaciones y resultados científicos organizados por área temática. Cada tarjeta incluye resumen, estado de evidencia y botón para ampliar detalles.</p>
 
       <div class="card-grid publication-grid">
-        {sorted.map((publication) => (
-          <PublicationCard {...publication} />
-        ))}
+        {sorted.map((publication) => <PublicationCard {...publication} />)}
       </div>
     </div>
   </section>

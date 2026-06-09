@@ -1,16 +1,20 @@
 ---
 title: "Effect of Symmetrically Switched Rectifier Topologies on the Frequency Regulation of Standalone Micro-Hydro Power Plants"
 authors:
-  - Henry Bory
-  - J. L. Martin
-  - I. Martinez de Alegria
-  - L. Vazquez
+  - "Henry Bory Prevez"
+  - "coautores"
 year: 2021
-venue: "Energies, 14(11), 3201"
+venue: "Energies, 14"
 doi: "10.3390/en14113201"
 area: "Micro-hidroeléctricas y electrónica de potencia"
 evidenceStatus: "verificada"
 featured: true
+summary: "Estudio del efecto de topologías de rectificadores conmutados simétricamente sobre la regulación de frecuencia de micro-hidroeléctricas aisladas."
+impact: "Publicación clave para presentar su línea de micro-hidroeléctricas, electrónica de potencia y control."
+keywords:
+  - "Energies"
+  - "rectificadores"
+  - "micro-hidroeléctricas"
 ---
 
-Trabajo sobre topologías de rectificadores conmutados simétricamente y regulación de frecuencia en plantas micro-hidroeléctricas aisladas.
+Estudio del efecto de topologías de rectificadores conmutados simétricamente sobre la regulación de frecuencia de micro-hidroeléctricas aisladas.

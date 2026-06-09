@@ -2,12 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const evidenceStatus = z.enum([
-  'verificada',
-  'validada_usuario',
-  'pendiente',
-  'no_publicable',
-]);
+const evidenceStatus = z.enum(['verificada', 'validada_usuario', 'pendiente', 'no_publicable']);
 
 const publications = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/publications' }),
@@ -21,6 +16,9 @@ const publications = defineCollection({
     area: z.string(),
     evidenceStatus,
     featured: z.boolean().default(false),
+    summary: z.string().optional(),
+    impact: z.string().optional(),
+    keywords: z.array(z.string()).default([]),
   }),
 });
 
@@ -47,8 +45,4 @@ const software = defineCollection({
   }),
 });
 
-export const collections = {
-  publications,
-  projects,
-  software,
-};
+export const collections = { publications, projects, software };

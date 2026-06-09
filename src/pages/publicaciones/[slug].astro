@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/url';
+
+export async function getStaticPaths() {
+  const publications = await getCollection('publications');
+  return publications.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { publication: entry.data },
+  }));
+}
+
+const { publication } = Astro.props;
+---
+
+<BaseLayout title={`${publication.title} | Henry Bory Prevez`}>
+  <section class="section">
+    <div class="container readable">
+      <p class="eyebrow">{publication.area} · {publication.year}</p>
+      <h1>{publication.title}</h1>
+
+      {publication.summary && <p class="lead">{publication.summary}</p>}
+
+      <div class="card">
+        <h2>Ficha bibliográfica</h2>
+        <p><strong>Autores:</strong> {publication.authors.join(', ')}</p>
+        {publication.venue && <p><strong>Fuente:</strong> {publication.venue}</p>}
+        {publication.doi && <p><strong>DOI:</strong> {publication.doi}</p>}
+        <p><strong>Estado de evidencia:</strong> {publication.evidenceStatus}</p>
+      </div>
+
+      {publication.impact && (
+        <div class="card">
+          <h2>Resumen de aporte</h2>
+          <p>{publication.impact}</p>
+        </div>
+      )}
+
+      {publication.keywords?.length > 0 && (
+        <div class="card">
+          <h2>Palabras clave</h2>
+          <div class="tag-list">
+            {publication.keywords.map((keyword) => <span class="tag">{keyword}</span>)}
+          </div>
+        </div>
+      )}
+
+      <div class="button-row">
+        {publication.url && <a class="button" href={publication.url} target="_blank" rel="noopener noreferrer">Ver fuente</a>}
+        <a class="button secondary" href={withBase('publicaciones/')}>Volver a publicaciones</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,8 @@
 ---
+import { withBase } from '../../utils/url';
+
 interface Props {
+  slug: string;
   title: string;
   authors: string[];
   year: number;
@@ -8,17 +11,25 @@ interface Props {
   doi?: string;
   url?: string;
   evidenceStatus: string;
+  summary?: string;
+  impact?: string;
 }
 
-const { title, authors, year, venue, area, doi, url, evidenceStatus } = Astro.props;
+const { slug, title, authors, year, venue, area, doi, url, evidenceStatus, summary, impact } = Astro.props;
 ---
 
 <article class="card publication-card">
   <p class="eyebrow">{area} · {year}</p>
   <h2>{title}</h2>
+  {summary && <p>{summary}</p>}
   <p><strong>Autores:</strong> {authors.join(', ')}</p>
   {venue && <p><strong>Fuente:</strong> {venue}</p>}
   {doi && <p><strong>DOI:</strong> {doi}</p>}
+  {impact && <p><strong>Resumen de aporte:</strong> {impact}</p>}
   <p class="small"><strong>Estado de evidencia:</strong> {evidenceStatus}</p>
-  {url && <a class="text-link" href={url} target="_blank" rel="noopener noreferrer">Ver fuente</a>}
+
+  <div class="button-row publication-actions">
+    <a class="button" href={withBase(`publicaciones/${slug}/`)}>Ver detalle</a>
+    {url && <a class="button secondary" href={url} target="_blank" rel="noopener noreferrer">Ver fuente</a>}
+  </div>
 </article>

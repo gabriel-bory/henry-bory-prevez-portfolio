@@ -1,0 +1,35 @@
+---
+import { languages } from '../../data/languages';
+import { withBase } from '../../utils/url';
+
+const activeLanguage = languages.find((language) => language.status === 'active') ?? languages[0];
+---
+
+<div class="language-select" aria-label="Selector de idioma">
+  <label class="language-select__label" for="language-select">
+    Seleccionar idioma
+  </label>
+
+  <select id="language-select" class="language-select__control" data-language-select>
+    {languages.map((language) => (
+      <option
+        value={withBase(language.href)}
+        selected={language.code === activeLanguage.code}
+        disabled={language.status !== 'active'}
+      >
+        {language.status === 'active'
+          ? language.label
+          : `${language.label} — en preparación`}
+      </option>
+    ))}
+  </select>
+</div>
+
+<script>
+  document.querySelector('[data-language-select]')?.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLSelectElement && target.value) {
+      window.location.href = target.value;
+    }
+  });
+</script>
