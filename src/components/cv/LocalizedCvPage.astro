@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../ui/PageIntro.astro';
+import DownloadCard from './DownloadCard.astro';
+import { cvDownloads } from '../../data/cv-downloads';
+import { localizedPages } from '../../data/localized-pages';
+import { localizedRoutes } from '../../i18n/routes';
+import { localeLabels, type Locale } from '../../i18n/locales';
+import { withBase } from '../../utils/url';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const page = localizedPages[locale].cv;
+const current = cvDownloads.find((group) => group.locale === locale);
+const otherGroups = cvDownloads.filter((group) => group.locale !== locale);
+---
+
+<BaseLayout title={`${page.title} | Henry Bory Prevez`}>
+  <PageIntro
+    eyebrow={page.eyebrow}
+    title={page.title}
+    lead={page.lead}
+    summaryTitle={page.summaryTitle}
+    summary={page.summary}
+    actions={[
+      { label: locale === 'es' ? 'Ver publicaciones' : locale === 'en' ? 'View publications' : 'Publications', href: localizedRoutes.publications[locale] },
+      { label: locale === 'es' ? 'Contacto' : locale === 'en' ? 'Contact' : 'Contact', href: localizedRoutes.contact[locale], variant: 'secondary' },
+    ]}
+  />
+
+  <section class="section section-tight">
+    <div class="container">
+      {current && (
+        <section class="language-section" aria-labelledby={`cv-${current.locale}`}>
+          <p class="eyebrow">{localeLabels[current.locale].nativeName}</p>
+          <h2 id={`cv-${current.locale}`}>{current.language}</h2>
+          <div class="card-grid">
+            {current.items.map((item) => <DownloadCard item={item} locale={locale} />)}
+          </div>
+        </section>
+      )}
+
+      <section class="section-mini">
+        <h2>{locale === 'es' ? 'También disponible en otros idiomas' : locale === 'en' ? 'Also available in other languages' : 'Available languages'}</h2>
+        <div class="tag-list language-availability-list">
+          {otherGroups.map((group) => (
+            <a class="tag language-link" href={withBase(localizedRoutes.cv[group.locale])}>{localeLabels[group.locale].short} · {localeLabels[group.locale].nativeName}</a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,22 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/ui/PageIntro.astro';
-import { withBase } from '../../utils/url';
+import LocalizedPage from '../../components/i18n/LocalizedPage.astro';
 ---
 
-<BaseLayout title="Publications | Henry Bory Prevez">
-  <PageIntro
-    eyebrow="Scientific production"
-    title="Selected publications"
-    lead="Curated publication catalogue related to automatic control, power electronics, renewable energy, micro-hydropower, OTEC, modelling, COVID-19, educational software and computational biophysics."
-    summaryTitle="Scientific contribution"
-    summary="The selected publications show an evolution from rectifiers, converters and frequency regulation in micro-hydropower toward ocean energy, virtual laboratories, MATLAB tools, epidemiological modelling and computational biophysics."
-    actions={[{ label: 'Research lines', href: 'en/research/' }, { label: 'Spanish publication catalogue', href: 'publicaciones/', variant: 'secondary' }]}
-  />
-
-  <section class="section section-tight"><div class="container"><div class="card">
-    <h2>Detailed catalogue</h2>
-    <p>The full reviewed English publication catalogue will be prepared from the existing Spanish source and the verified CV evidence. Meanwhile, the complete catalogue remains available in Spanish.</p>
-    <a class="button" href={withBase('publicaciones/')}>Open Spanish catalogue</a>
-  </div></div></section>
-</BaseLayout>
+<LocalizedPage locale="en" pageKey="publications" />

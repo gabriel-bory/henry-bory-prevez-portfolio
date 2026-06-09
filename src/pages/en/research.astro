@@ -1,23 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/ui/PageIntro.astro';
-import { withBase } from '../../utils/url';
+import LocalizedPage from '../../components/i18n/LocalizedPage.astro';
 ---
 
-<BaseLayout title="Research | Henry Bory Prevez">
-  <PageIntro
-    eyebrow="Research"
-    title="Research lines"
-    lead="Research work in automatic control, power electronics, renewable energy systems, micro-hydropower, OTEC, ocean energy, educational software and computational biophysics."
-    summaryTitle="Scientific map"
-    summary="The common axis is modelling, control and simulation of complex systems: from frequency regulation in isolated micro-hydropower and power converters to tumour-growth modelling, virtual laboratories and educational tools."
-    actions={[{ label: 'Publications', href: 'en/publications/' }, { label: 'Projects', href: 'en/projects/', variant: 'secondary' }]}
-  />
-
-  <section class="section section-tight"><div class="container"><div class="card-grid">
-    <article class="card"><h2>Energy and power electronics</h2><p>Converters, electrical systems, frequency regulation and renewable energy applications.</p></article>
-    <article class="card"><h2>Pelton micro-hydropower</h2><p>Isolated micro-hydropower systems, frequency control and renewable generation.</p></article>
-    <article class="card"><h2>OTEC and ocean energy</h2><p>Thermal ocean energy, Anderson cycle modelling and ocean-energy simulation.</p></article>
-    <article class="card"><h2>Computational biophysics</h2><p>Mathematical modelling and computational analysis applied to biological systems.</p></article>
-  </div></div></section>
-</BaseLayout>
+<LocalizedPage locale="en" pageKey="research" />

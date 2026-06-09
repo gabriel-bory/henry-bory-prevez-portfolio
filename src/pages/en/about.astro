@@ -1,15 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/ui/PageIntro.astro';
+import LocalizedPage from '../../components/i18n/LocalizedPage.astro';
 ---
 
-<BaseLayout title="About | Henry Bory Prevez">
-  <PageIntro
-    eyebrow="Academic profile"
-    title="About"
-    lead="Dr. Henry Bory Prevez is a Full Professor at Universidad de Oriente and holds a PhD in Automatic Control. His academic work connects teaching, research, simulation, energy systems, software and mathematical modelling."
-    summaryTitle="Integrated trajectory"
-    summary="The profile combines university teaching since 2002, technical expertise in MATLAB/Simulink, Python, control and power electronics, international projects such as CRECE and IRIS, scientific publications and academic software records."
-    actions={[{ label: 'Download CV', href: 'en/cv/' }, { label: 'Research lines', href: 'en/research/', variant: 'secondary' }]}
-  />
-</BaseLayout>
+<LocalizedPage locale="en" pageKey="about" />

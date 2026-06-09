@@ -1,15 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/ui/PageIntro.astro';
+import LocalizedPage from '../../components/i18n/LocalizedPage.astro';
 ---
 
-<BaseLayout title="Contact | Henry Bory Prevez">
-  <PageIntro
-    eyebrow="Contact and collaboration"
-    title="Contact"
-    lead="Professional contact orientation for academic, scientific, technological and institutional collaboration in automatic control, power electronics, renewable energy systems, scientific software, modelling and computational biophysics."
-    summaryTitle="Collaboration areas"
-    summary="Collaboration opportunities focus on energy projects, advanced control, academic software, virtual laboratories, mathematical modelling and international dissemination of verifiable scientific results."
-    actions={[{ label: 'Download CV', href: 'en/cv/' }, { label: 'Research lines', href: 'en/research/', variant: 'secondary' }]}
-  />
-</BaseLayout>
+<LocalizedPage locale="en" pageKey="contact" />

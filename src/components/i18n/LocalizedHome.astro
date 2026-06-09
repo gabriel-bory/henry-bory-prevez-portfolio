@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localizedPages } from '../../data/localized-pages';
+import { localizedRoutes } from '../../i18n/routes';
+import type { Locale } from '../../i18n/locales';
+import { withBase } from '../../utils/url';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const home = localizedPages[locale].home;
+const profileImage = withBase('images/profile/henry-bory-prevez-profile.png');
+---
+
+<BaseLayout title="Henry Bory Prevez">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{home.eyebrow}</p>
+        <h1>{home.title}</h1>
+        <p class="lead">{home.lead}</p>
+        <div class="button-row">
+          <a class="button" href={withBase(localizedRoutes.cv[locale])}>CV</a>
+          <a class="button secondary" href={withBase(localizedRoutes.publications[locale])}>{locale === 'es' ? 'Ver publicaciones' : locale === 'en' ? 'View publications' : 'Publications'}</a>
+        </div>
+      </div>
+      <aside class="profile-panel" aria-label="Perfil profesional">
+        <img src={profileImage} alt="Foto profesional del Dr. Henry Bory Prevez" class="profile-photo" loading="eager" width="420" height="520" />
+        <div class="card"><h2>{home.summaryTitle}</h2><p>{home.summary}</p></div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

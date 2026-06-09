@@ -1,15 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/ui/PageIntro.astro';
+import LocalizedPage from '../../components/i18n/LocalizedPage.astro';
 ---
 
-<BaseLayout title="Projects | Henry Bory Prevez">
-  <PageIntro
-    eyebrow="Applied projects"
-    title="Projects"
-    lead="Applied work related to isolated micro-hydropower systems, frequency regulation, OTEC systems, power electronics, real-time control, scientific software and international academic cooperation."
-    summaryTitle="Applied work"
-    summary="The applied trajectory concentrates on energy and simulation solutions: frequency regulation in micro-hydropower, converter analysis, load calculation, OTEC plant modelling, control prototypes and tools for teaching and research."
-    actions={[{ label: 'Research lines', href: 'en/research/' }, { label: 'Software', href: 'en/software/', variant: 'secondary' }]}
-  />
-</BaseLayout>
+<LocalizedPage locale="en" pageKey="projects" />
