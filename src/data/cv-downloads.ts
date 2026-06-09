@@ -4,7 +4,7 @@ export const cvDownloads = [
     items: [
       {
         title: 'CV ejecutivo internacional',
-        description: 'Versión ejecutiva para cooperación internacional, universidades y proyectos tecnológicos.',
+        description: 'Versión ejecutiva para cooperación internacional, universidades y proyectos tecnológicos. Formato imprimible con foto profesional.',
         pdf: 'files/cv/es/cv-ejecutivo-internacional-henry-bory-prevez.pdf',
         docx: 'files/cv/es/cv-ejecutivo-internacional-henry-bory-prevez.docx',
         status: 'Disponible',
@@ -25,14 +25,14 @@ export const cvDownloads = [
       },
       {
         title: 'CV de una página',
-        description: 'Versión breve para eventos, networking académico, QR y presentación rápida.',
+        description: 'Versión breve para eventos, networking académico, QR y presentación rápida. Formato imprimible con foto oficial de CV.',
         pdf: 'files/cv/es/cv-resumen-una-pagina-henry-bory-prevez.pdf',
         docx: 'files/cv/es/cv-resumen-una-pagina-henry-bory-prevez.docx',
         status: 'Disponible',
       },
       {
         title: 'Dossier profesional',
-        description: 'Documento institucional con trayectoria, líneas de investigación, proyectos, software y evidencias.',
+        description: 'Documento institucional con trayectoria, líneas de investigación, proyectos, software y evidencias. Formato imprimible con foto oficial de CV.',
         pdf: 'files/dossier/es/dossier-profesional-henry-bory-prevez.pdf',
         docx: 'files/dossier/es/dossier-profesional-henry-bory-prevez.docx',
         status: 'Disponible',
@@ -44,7 +44,7 @@ export const cvDownloads = [
     items: [
       {
         title: 'Executive CV',
-        description: 'Reviewed executive version for international cooperation, academic networking and project presentation.',
+        description: 'Reviewed executive version for international cooperation, academic networking and project presentation. Print-oriented version with official CV photo.',
         pdf: 'files/cv/en/cv-executive-henry-bory-prevez-en.pdf',
         docx: 'files/cv/en/cv-executive-henry-bory-prevez-en.docx',
         status: 'Available',
@@ -58,7 +58,7 @@ export const cvDownloads = [
       },
       {
         title: 'ATS CV',
-        description: 'Plain-format English version optimized for automated screening systems.',
+        description: 'Plain-format English version without photo, optimized for automated screening systems.',
         pdf: 'files/cv/en/cv-ats-henry-bory-prevez-en.pdf',
         docx: 'files/cv/en/cv-ats-henry-bory-prevez-en.docx',
         status: 'Available',
