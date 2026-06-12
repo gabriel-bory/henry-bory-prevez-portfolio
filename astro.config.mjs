@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://Leirgb.github.io',
+  site: 'https://gabriel-bory.github.io',
   base: '/henry-bory-prevez-portfolio',
   trailingSlash: 'always',
   i18n: {

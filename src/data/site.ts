@@ -4,9 +4,9 @@ export const site = {
   title: 'Dr. Henry Bory Prevez | Automática, Energías Renovables y Modelado Matemático',
   description:
     'Portafolio profesional del Dr. en Ciencias Henry Bory Prevez, Profesor Titular de la Universidad de Oriente, especializado en Automática, control avanzado, electrónica de potencia, micro-hidroeléctricas, sistemas OTEC, energía undimotriz y modelado matemático aplicado.',
-  url: 'https://Leirgb.github.io/henry-bory-prevez-portfolio/',
+  url: 'https://gabriel-bory.github.io/henry-bory-prevez-portfolio/',
   locale: 'es',
-  cvUrl: 'https://Leirgb.github.io/henry-bory-prevez-portfolio/cv/',
+  cvUrl: 'https://gabriel-bory.github.io/henry-bory-prevez-portfolio/cv/',
 };
 
 export const profile = {
