@@ -169,9 +169,10 @@ The project is currently focused on:
 
 Developed and maintained by **Gabriel Bory Prevez**.
 
-GitHub profile:
+Gabriel Bory Prevez is a full-stack developer focused on Angular, TypeScript, Astro, NestJS, Java and Spring Boot. This project is part of a professional portfolio workflow focused on clean code, public documentation, multilingual content and maintainable web development practices.
 
-[https://github.com/gabriel-bory](https://github.com/gabriel-bory)
+- GitHub: [https://github.com/gabriel-bory](https://github.com/gabriel-bory)
+- LinkedIn: [https://www.linkedin.com/in/gabriel-bory-prevez](https://www.linkedin.com/in/gabriel-bory-prevez)
 
 ---
 
